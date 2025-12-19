@@ -75,10 +75,6 @@ RUN         cd /tmp/ \
 # Setup user and working directory
 RUN         useradd -m -d /home/container -s /bin/bash container
 
-# Install required node libraries
-WORKDIR     /app
-RUN         npm install ws js-yaml tesseract.js sharp
-
 # Allow runtime user to read (and optionally write) /app
 RUN chown -R container:container /app
 
