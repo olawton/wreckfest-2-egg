@@ -6,15 +6,15 @@ This egg for both the **[Pelican Panel](https://github.com/pelican-dev/panel)** 
 
 ## ✨ Features
 
-✅ **Fixed Console Functionality** — View console output and send commands to the server via the panel\
-✅ **Log Archiving** — Archives and organizes the server logs in their own directory at server start
+📟 **Fixed Console Functionality** — View console output and send commands to the server via the panel\
+🪵 **Log Archiving** — Archives and organizes the server logs in their own directory at server start
 
 ---
 
 ## 🛠️ Getting Started
 
 1. **Download the Egg**  
-   Grab the latest egg for either the Pelican Panel or Pterodactyl Panel from the **[Releases](https://github.com/olawton/wreckfest-2-egg/releases)** page.
+   Grab the latest egg for either the Pelican Panel or Pterodactyl Panel from the **[eggs directory](https://github.com/olawton/wreckfest-2-egg/tree/main/eggs)**.
 
 2. **Import the Egg**  
    Upload/import the egg into your panel as you would any other server template.
