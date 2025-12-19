@@ -75,7 +75,8 @@ RUN         cd /tmp/ \
 # Setup user and working directory
 RUN         useradd -m -d /home/container -s /bin/bash container
 
-# Allow runtime user to read (and optionally write) /app
+# Create and allow runtime user to read (and optionally write) /app
+RUN mkdir -p /app
 RUN chown -R container:container /app
 
 # Set Node path
