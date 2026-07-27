@@ -90,15 +90,15 @@ export DXVK_LOG_LEVEL=none
 export WINEDLLOVERRIDES="dxgi=n"
 
 # Start the virtual display
-#XVFB_DISPLAY=":99"
-#Xvfb $XVFB_DISPLAY -screen 0 1024x768x16 &
-#XVFB_PID=$!
-#export DISPLAY=$XVFB_DISPLAY
-#sleep 2
-#echo "Virtual display started on DISPLAY=$DISPLAY (PID: $XVFB_PID)"
+XVFB_DISPLAY=":99"
+Xvfb $XVFB_DISPLAY -screen 0 1024x768x16 &
+XVFB_PID=$!
+export DISPLAY=$XVFB_DISPLAY
+sleep 2
+echo "Virtual display started on DISPLAY=$DISPLAY (PID: $XVFB_PID)"
 
 #Create file for panel to forward commands to
-#touch /tmp/console_commands.log
+touch /tmp/console_commands.log
 
 # Verify logs and config directory exists
 mkdir -p /home/container/logs
@@ -116,7 +116,7 @@ fi
 
 # Create new Wreckfest 2 log file & output to panel console
 touch /home/container/ServerSave/log.txt
-# tail -n 0 -F /home/container/ServerSave/log.txt &
+tail -n 0 -F /home/container/ServerSave/log.txt &
 
 # Create server_config.scnf from the template if it does not already exist
 SERVER_CONFIG="/home/container/ServerSave/server_config.scnf"
@@ -127,7 +127,7 @@ if [ ! -f "$SERVER_CONFIG" ]; then
 fi
 
 # Run the Wreckfest 2 management script (created by @gigny)
-#node /app/index.js &
+node /app/index.js &
 
 # Run the server
 eval ${MODIFIED_STARTUP}
