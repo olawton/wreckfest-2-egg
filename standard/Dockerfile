@@ -15,8 +15,6 @@ RUN         apt install -y --no-install-recommends \
                 software-properties-common \
                 libntlm0 \
                 winbind \
-                xvfb \
-                xauth \
                 libncurses5-dev:i386 \
                 libncurses6 \
                 dbus \
@@ -39,14 +37,7 @@ RUN         apt install -y \
                 python3-setuptools \
                 tini \
                 file \
-                pipx \
-                xdotool \
-                fluxbox \
-                xterm
-
-# Install Node.js
-RUN         curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
-            apt install -y nodejs
+                pipx
 
 # Download Proton GE
 RUN         curl -sLOJ "$(curl -s https://api.github.com/repos/GloriousEggroll/proton-ge-custom/releases/tags/GE-Proton10-34 | grep browser_download_url | cut -d\" -f4  | egrep .tar.gz)"
@@ -75,13 +66,6 @@ RUN         cd /tmp/ \
 # Setup user and working directory
 RUN         useradd -m -d /home/container -s /bin/bash container
 
-# Create and allow runtime user to read (and optionally write) /app
-RUN mkdir -p /app
-RUN chown -R container:container /app
-
-# Set Node path
-ENV NODE_PATH=/app/node_modules
-
 # Runtime user/env
 USER        container
 ENV         USER=container HOME=/home/container
@@ -89,12 +73,6 @@ WORKDIR     /home/container
 
 # Copy default Wreckfest 2 server-config
 COPY        --chown=container:container ./../server_config.scnf.template /server_config.scnf.template
-
-# Copy Wreckfest 2 management scripts
-COPY        --chown=container:container ./../standard/index.js /app/index.js
-
-# Allow runtime user to read (and optionally write) /app
-RUN chown -R container:container /app
 
 STOPSIGNAL  SIGINT
 
