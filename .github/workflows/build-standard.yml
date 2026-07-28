@@ -32,7 +32,7 @@ jobs:
           username: ${{ steps.lower-repo.outputs.repository }}
           password: ${{ secrets.REGISTRY_TOKEN || secrets.GITHUB_TOKEN }}
 
-      - name: Build and push automarshal image
+      - name: Build and push standard image
         uses: docker/build-push-action@v6
         with:
           context: .
