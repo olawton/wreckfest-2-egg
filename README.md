@@ -1,17 +1,17 @@
 # Wreckfest 2 Dedicated Server Pelican/Pterodactyl Egg
 
-This egg for both the **[Pelican Panel](https://github.com/pelican-dev/panel)** and the **[Pterodactyl Panel](https://github.com/pterodactyl/panel)** aims to resolve most of the issues associated with hosting a Wreckfest 2 Dedicated Server on Linux. It achieves this by utilizing **[Proton](https://github.com/ValveSoftware/Proton)**, **[xclip](https://github.com/astrand/xclip)**, and **[Xvfb](https://x.org/releases/X11R7.7/doc/man/man1/Xvfb.1.xhtml)**, making server management nearly as seamless as the native Windows experience.
+This egg for both the **[Pelican Panel](https://github.com/pelican-dev/panel)** and the **[Pterodactyl Panel](https://github.com/pterodactyl/panel)** brings the Wreckfest 2 Dedicated Server to Linux via **[Proton](https://github.com/ValveSoftware/Proton)** and aims to improve the overall self-hosting experience compared with running the server natively on Windows. It utilizes **[wreckfest-2-headless-server](https://github.com/olawton/wreckfest-2-headless-server)** to provide seamless, reliable command input and console output through either panel.
 
 ---
 
-## ✨ Features
+## Features
 
-📟 **Fixed Console Functionality** — View console output and send commands to the server via the panel\
-🪵 **Log Archiving** — Archives and organizes the server logs in their own directory at server start
+**Fixed Console Functionality** — View console output and send commands to the server via the panel\
+**Log Archiving** — Archives and organizes the server logs in their own directory at server start
 
 ---
 
-## 🛠️ Getting Started
+## Getting Started
 
 1. **Download the Egg**  
    Grab the latest egg for either the Pelican Panel or Pterodactyl Panel from the **[eggs directory](https://github.com/olawton/wreckfest-2-egg/tree/main/eggs)**.
@@ -38,7 +38,7 @@ This egg for both the **[Pelican Panel](https://github.com/pelican-dev/panel)** 
 
 ---
 
-## 💡 Suggestions
+## Suggestions
 
 * Create a schedule in the panel to restart the server daily (a time during low server activity is recommended).
 * Use Gingy's **[Wreckfest 2 Event Loop Builder](https://wreckevents.com/)** to quickly generate an event_loop.becl file for your server.
@@ -46,18 +46,12 @@ This egg for both the **[Pelican Panel](https://github.com/pelican-dev/panel)** 
 
 ---
 
-## 🚩 Known Issues
-
-* Commands that return information directly to the console (for example `print_config`, `roles`, or similar output-only commands) are **not supported** and will not produce visible results.
-
----
-
-## 🧪 What's in Development
+## What's in Development
 
 An upcoming egg release with additional functionality is currently in development. No release date has been planned.
 
 ---
 
-## 🛟 Support
+## Support
 
 Have a question about the egg? **[Open an issue](https://github.com/olawton/wreckfest-2-egg/issues)**. Have a question about the Wreckfest 2 Dedicated Server? Use the #server-setup channel in the official **[Wreckfest Discord](https://discord.gg/W9cHf45UJB)**.
