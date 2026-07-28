@@ -81,6 +81,17 @@ else
     echo -e "Not updating game server as auto update was set to 0. Starting Server"
 fi
 
+# Install the image-provided headless wrapper, overwriting any existing copy
+HEADLESS_EXE_SOURCE="/opt/wreckfest2-headless/Wreckfest2-headless.exe"
+HEADLESS_EXE_DESTINATION="/home/container/Wreckfest2-headless.exe"
+
+if [ ! -s "$HEADLESS_EXE_SOURCE" ]; then
+    echo "Wreckfest 2 headless wrapper is missing from the container image: $HEADLESS_EXE_SOURCE"
+    exit 1
+fi
+
+cp -f -- "$HEADLESS_EXE_SOURCE" "$HEADLESS_EXE_DESTINATION"
+
 # Replace Startup Variables
 MODIFIED_STARTUP=$(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')
 echo -e ":/home/container$ ${MODIFIED_STARTUP}"
@@ -88,17 +99,6 @@ echo -e ":/home/container$ ${MODIFIED_STARTUP}"
 # Set environment variables
 export DXVK_LOG_LEVEL=none
 export WINEDLLOVERRIDES="dxgi=n"
-
-# Start the virtual display
-XVFB_DISPLAY=":99"
-Xvfb $XVFB_DISPLAY -screen 0 1024x768x16 &
-XVFB_PID=$!
-export DISPLAY=$XVFB_DISPLAY
-sleep 2
-echo "Virtual display started on DISPLAY=$DISPLAY (PID: $XVFB_PID)"
-
-#Create file for panel to forward commands to
-touch /tmp/console_commands.log
 
 # Verify logs and config directory exists
 mkdir -p /home/container/logs
@@ -114,10 +114,6 @@ if [ -f "$LOG" ]; then
     rm "$LOG"
 fi
 
-# Create new Wreckfest 2 log file & output to panel console
-touch /home/container/ServerSave/log.txt
-tail -n 0 -F /home/container/ServerSave/log.txt &
-
 # Create server_config.scnf from the template if it does not already exist
 SERVER_CONFIG="/home/container/ServerSave/server_config.scnf"
 SERVER_CONFIG_TEMPLATE="/server_config.scnf.template"
@@ -125,9 +121,6 @@ SERVER_CONFIG_TEMPLATE="/server_config.scnf.template"
 if [ ! -f "$SERVER_CONFIG" ]; then
     cp "$SERVER_CONFIG_TEMPLATE" "$SERVER_CONFIG"
 fi
-
-# Run the Wreckfest 2 management script (created by @gigny)
-node /app/index.js &
 
 # Run the server
 eval ${MODIFIED_STARTUP}

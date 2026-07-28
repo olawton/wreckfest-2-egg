@@ -12,7 +12,6 @@ RUN         apt install -y --no-install-recommends \
                 wget \
                 iproute2 \
                 gnupg2 \
-                software-properties-common \
                 libntlm0 \
                 winbind \
                 xvfb \
@@ -21,13 +20,14 @@ RUN         apt install -y --no-install-recommends \
                 libncurses6 \
                 dbus \
                 libgdiplus \
-                lib32gcc-s1
+                lib32gcc-s1 \
+                libc6
 RUN         apt install -y \
                 alsa-tools \
                 libpulse0 \
                 pulseaudio \
                 libpulse-dev \
-                libasound2 \
+                libasound2-dev \
                 libao-common \
                 gnutls-bin \
                 gnupg \
@@ -39,17 +39,10 @@ RUN         apt install -y \
                 python3-setuptools \
                 tini \
                 file \
-                pipx \
-                xdotool \
-                fluxbox \
-                xterm
-
-# Install Node.js
-RUN         curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
-            apt install -y nodejs
+                pipx
 
 # Download Proton GE
-RUN         curl -sLOJ "$(curl -s https://api.github.com/repos/GloriousEggroll/proton-ge-custom/releases/latest | grep browser_download_url | cut -d\" -f4 | egrep .tar.gz)"
+RUN         curl -sLOJ "$(curl -s https://api.github.com/repos/GloriousEggroll/proton-ge-custom/releases/latest | grep browser_download_url | cut -d\" -f4 | grep -v aarch64 | egrep .tar.gz)"
 RUN         tar -xzf GE-Proton*.tar.gz -C /usr/local/bin/ --strip-components=1
 RUN         rm GE-Proton*.*
 
@@ -72,15 +65,16 @@ RUN         cd /tmp/ \
             && tar xvf rcon.tar.gz \
             && mv rcon-0.10.3-amd64_linux/rcon /usr/local/bin/
 
+# Download the latest Wreckfest 2 headless server wrapper
+RUN         mkdir -p /opt/wreckfest2-headless \
+            && curl -fL --retry 3 \
+                https://github.com/olawton/wreckfest-2-headless-server/releases/latest/download/Wreckfest2-headless.exe \
+                -o /opt/wreckfest2-headless/Wreckfest2-headless.exe \
+            && test -s /opt/wreckfest2-headless/Wreckfest2-headless.exe \
+            && chmod 0644 /opt/wreckfest2-headless/Wreckfest2-headless.exe
+
 # Setup user and working directory
 RUN         useradd -m -d /home/container -s /bin/bash container
-
-# Create and allow runtime user to read (and optionally write) /app
-RUN mkdir -p /app
-RUN chown -R container:container /app
-
-# Set Node path
-ENV NODE_PATH=/app/node_modules
 
 # Runtime user/env
 USER        container
@@ -89,12 +83,6 @@ WORKDIR     /home/container
 
 # Copy default Wreckfest 2 server-config
 COPY        --chown=container:container ./../server_config.scnf.template /server_config.scnf.template
-
-# Copy Wreckfest 2 management scripts
-COPY        --chown=container:container ./../standard/index.js /app/index.js
-
-# Allow runtime user to read (and optionally write) /app
-RUN chown -R container:container /app
 
 STOPSIGNAL  SIGINT
 
