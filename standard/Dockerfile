@@ -42,9 +42,12 @@ RUN         apt install -y \
                 pipx
 
 # Download Proton GE
-RUN         curl -sLOJ "$(curl -s https://api.github.com/repos/GloriousEggroll/proton-ge-custom/releases/latest | grep browser_download_url | cut -d\" -f4 | grep -v aarch64 | egrep .tar.gz)"
-RUN         tar -xzf GE-Proton*.tar.gz -C /usr/local/bin/ --strip-components=1
-RUN         rm GE-Proton*.*
+ARG         GE_PROTON_VERSION=GE-Proton11-3
+RUN         curl -fL --retry 3 \
+                "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${GE_PROTON_VERSION}/${GE_PROTON_VERSION}.tar.gz" \
+                -o "${GE_PROTON_VERSION}.tar.gz"
+RUN         tar -xzf "${GE_PROTON_VERSION}.tar.gz" -C /usr/local/bin/ --strip-components=1
+RUN         rm "${GE_PROTON_VERSION}.tar.gz"
 
 # Proton Fix machine-id
 RUN         rm -f /etc/machine-id
