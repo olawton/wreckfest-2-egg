@@ -1,6 +1,10 @@
-# Wreckfest 2 Dedicated Server Pelican/Pterodactyl Egg
+# [Wreckfest 2](https://wreckfest2.thqnordic.com/) Pelican/Pterodactyl Egg
 
 This egg for both the **[Pelican Panel](https://github.com/pelican-dev/panel)** and the **[Pterodactyl Panel](https://github.com/pterodactyl/panel)** brings the Wreckfest 2 Dedicated Server to Linux via **[Proton](https://github.com/ValveSoftware/Proton)** and aims to improve the overall self-hosting experience compared with running the server natively on Windows. It utilizes **[wreckfest-2-headless-server](https://github.com/olawton/wreckfest-2-headless-server)** to provide seamless, reliable command input and console output through either panel.
+
+<p align="center">
+  <img src="demo/demo.gif" alt="Wreckfest 2 dedicated server running through the panel">
+</p>
 
 ---
 
@@ -28,7 +32,9 @@ This egg for both the **[Pelican Panel](https://github.com/pelican-dev/panel)** 
    - Allocate **at least 2 GB of RAM**.  
    - Ensure the server **has access to swap memory**.
 
-   > ⚠️ **Warning:** Without swap memory enabled, you’ll need to allocate significantly more RAM or restart the server more frequently to avoid crashes caused by a known memory leak.
+> [!NOTE]
+>
+> Without swap memory enabled, you’ll need to allocate significantly more RAM or restart the server more frequently to avoid crashes caused by a known memory leak.  
 
 5. **Save Directory**  
    The server’s `save-dir` parameter is preconfigured to target the `ServerSave` directory. This is where the server writes:
