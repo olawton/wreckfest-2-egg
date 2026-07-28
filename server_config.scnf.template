@@ -1,8 +1,6 @@
 {
-    "bbmeta": "scnf v0 n1",
     "net server config": [
         {
-            "bbmeta": "ncnf v2 n1",
             "name": "Server",
             "description": "Welcome to my server!",
             "password": "",
@@ -12,21 +10,39 @@
     ],
     "game server config": [
         {
-            "bbmeta": "gcnf v3 n1",
-            "cup settings": [
+            "cup list": "",
+            "event loop name": "event_loop",
+            "countdown time": 100000,
+            "voting time": 20000,
+            "flags": "",
+            "auto ban report limits": [
                 {
-                    "bbmeta": "mros v1 n1",
-                    "point distribution": "30;27;25;20;19;18;17;16;15;14;13;12;11;10;9;8;7;6;5;4;3;2;1;0",
-                    "start order": "random",
-                    "points for best lap time": 0,
-                    "points for highest score": 0,
-                    "last race multiplier": 1,
-                    "number of races": 5
+                    "censor report limit": 2,
+                    "silence report limit": 4,
+                    "suspend report limit": 8
                 }
             ],
-            "event loop name": "default_loop",
-            "countdown time": 100000,
-            "flags": "leader enabled"
+            "server ban durations": [
+                {
+                    "censor duration": 1440,
+                    "silence duration": 1440,
+                    "suspend duration": 525600
+                }
+            ],
+            "admin ban durations": [
+                {
+                    "censor duration": 1440,
+                    "silence duration": 1440,
+                    "suspend duration": 525600
+                }
+            ],
+            "default ban durations": [
+                {
+                    "censor duration": 1440,
+                    "silence duration": 1440,
+                    "suspend duration": 525600
+                }
+            ]
         }
     ]
 }
