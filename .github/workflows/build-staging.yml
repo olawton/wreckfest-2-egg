@@ -1,4 +1,4 @@
-name: build standard
+name: build staging
 
 on:
   workflow_dispatch:
