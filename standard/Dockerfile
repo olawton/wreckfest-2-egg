@@ -12,7 +12,6 @@ RUN         apt install -y --no-install-recommends \
                 wget \
                 iproute2 \
                 gnupg2 \
-                software-properties-common \
                 libntlm0 \
                 winbind \
                 xvfb \
