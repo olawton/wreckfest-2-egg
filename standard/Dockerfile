@@ -63,6 +63,14 @@ RUN         cd /tmp/ \
             && tar xvf rcon.tar.gz \
             && mv rcon-0.10.3-amd64_linux/rcon /usr/local/bin/
 
+# Download the latest Wreckfest 2 headless server wrapper
+RUN         mkdir -p /opt/wreckfest2-headless \
+            && curl -fL --retry 3 \
+                https://github.com/olawton/wreckfest-2-headless-server/releases/latest/download/Wreckfest2-headless.exe \
+                -o /opt/wreckfest2-headless/Wreckfest2-headless.exe \
+            && test -s /opt/wreckfest2-headless/Wreckfest2-headless.exe \
+            && chmod 0644 /opt/wreckfest2-headless/Wreckfest2-headless.exe
+
 # Setup user and working directory
 RUN         useradd -m -d /home/container -s /bin/bash container
 

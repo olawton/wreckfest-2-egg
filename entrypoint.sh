@@ -81,6 +81,17 @@ else
     echo -e "Not updating game server as auto update was set to 0. Starting Server"
 fi
 
+# Install the image-provided headless wrapper, overwriting any existing copy
+HEADLESS_EXE_SOURCE="/opt/wreckfest2-headless/Wreckfest2-headless.exe"
+HEADLESS_EXE_DESTINATION="/home/container/Wreckfest2-headless.exe"
+
+if [ ! -s "$HEADLESS_EXE_SOURCE" ]; then
+    echo "Wreckfest 2 headless wrapper is missing from the container image: $HEADLESS_EXE_SOURCE"
+    exit 1
+fi
+
+cp -f -- "$HEADLESS_EXE_SOURCE" "$HEADLESS_EXE_DESTINATION"
+
 # Replace Startup Variables
 MODIFIED_STARTUP=$(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')
 echo -e ":/home/container$ ${MODIFIED_STARTUP}"
