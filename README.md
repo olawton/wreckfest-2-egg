@@ -1,6 +1,6 @@
 # [Wreckfest 2](https://wreckfest2.thqnordic.com/) Pelican/Pterodactyl Egg
 
-This egg for both the **[Pelican Panel](https://github.com/pelican-dev/panel)** and the **[Pterodactyl Panel](https://github.com/pterodactyl/panel)** brings the Wreckfest 2 Dedicated Server to Linux via **[Proton](https://github.com/ValveSoftware/Proton)** and aims to improve the overall self-hosting experience compared with running the server natively on Windows. It utilizes **[wreckfest-2-headless-server](https://github.com/olawton/wreckfest-2-headless-server)** to provide seamless, reliable command input and console output through either panel.
+This egg brings the Wreckfest 2 Dedicated Server to Linux via **[Proton](https://github.com/ValveSoftware/Proton)** on both **[Pelican Panel](https://github.com/pelican-dev/panel)** and **[Pterodactyl Panel](https://github.com/pterodactyl/panel)**, improving the overall self-hosting experience compared with running the server natively on Windows. It uses **[wreckfest-2-headless-server](https://github.com/olawton/wreckfest-2-headless-server)** to provide seamless, reliable command input and console output through either panel.
 
 <p align="center">
   <img src="demo/demo.gif" alt="Wreckfest 2 dedicated server running through the panel">
@@ -49,12 +49,6 @@ This egg for both the **[Pelican Panel](https://github.com/pelican-dev/panel)** 
 * Create a schedule in the panel to restart the server daily (a time during low server activity is recommended).
 * Use Gingy's **[Wreckfest 2 Event Loop Builder](https://wreckevents.com/)** to quickly generate an event_loop.becl file for your server.
 * For 24-player servers use a processor with a **[Geekbench 6](https://www.geekbench.com/)** single-core score of at least 1,750.
-
----
-
-## What's in Development
-
-An upcoming egg release with additional functionality is currently in development. No release date has been planned.
 
 ---
 
