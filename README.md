@@ -42,7 +42,7 @@ This egg brings the Wreckfest 2 Dedicated Server to Linux via **[Proton](https:/
    - Allocate **at least 2 GB of RAM**.  
    - Ensure the server **has access to swap memory**.
 
-> [!NOTE]
+> [!WARNING]
 >
 > Without swap memory enabled, you’ll need to allocate significantly more RAM or restart the server more frequently to avoid crashes caused by a known memory leak.  
 
