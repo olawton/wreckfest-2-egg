@@ -2,6 +2,16 @@
 
 This egg brings the Wreckfest 2 Dedicated Server to Linux via **[Proton](https://github.com/ValveSoftware/Proton)** on both **[Pelican Panel](https://github.com/pelican-dev/panel)** and **[Pterodactyl Panel](https://github.com/pterodactyl/panel)**, improving the overall self-hosting experience compared with running the server natively on Windows. It uses **[wreckfest-2-headless-server](https://github.com/olawton/wreckfest-2-headless-server)** to provide seamless, reliable command input and console output through either panel.
 
+> [!NOTE]
+>
+> **Upgrading an existing server:** Importing the latest egg does not automatically update the startup command saved to servers that were created with an earlier release. After importing the updated egg, open each existing server’s **Startup** settings and reset its startup command to **Default**. Alternatively, update it manually to:
+>
+> ```shell
+> proton run Wreckfest2-headless.exe --server --save-dir={{CONFIG_PATH}}
+> ```
+>
+> This step is required only for existing servers; servers created from the latest egg will use the new command automatically.
+
 <p align="center">
   <img src="demo/demo.gif" alt="Wreckfest 2 dedicated server running through the panel">
 </p>
@@ -10,7 +20,7 @@ This egg brings the Wreckfest 2 Dedicated Server to Linux via **[Proton](https:/
 
 ## Features
 
-**Fixed Console Functionality** — View console output and send commands to the server via the panel\
+**Full Console Functionality** — View console output and send commands to the server via the panel\
 **Log Archiving** — Archives and organizes the server logs in their own directory at server start
 
 ---
