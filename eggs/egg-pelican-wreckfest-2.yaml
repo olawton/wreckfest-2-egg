@@ -18,7 +18,7 @@ docker_images:
   Standard: 'ghcr.io/olawton/wreckfest-2:standard'
 file_denylist: {  }
 startup_commands:
-  Default: '(while read cmd; do echo "$cmd" >> /tmp/console_commands.log; done) < /dev/stdin & proton run Wreckfest2.exe --server --save-dir={{SAVE_DIR}}'
+  Default: 'proton run Wreckfest2-headless.exe --server --save-dir={{SAVE_DIR}}'
 config:
   files: {  }
   startup:

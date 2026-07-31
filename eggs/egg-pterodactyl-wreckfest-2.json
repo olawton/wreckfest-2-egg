@@ -13,7 +13,7 @@
         "ghcr.io\/olawton\/wreckfest-2:standard": "ghcr.io\/olawton\/wreckfest-2:standard"
     },
     "file_denylist": [],
-    "startup": "(while read cmd; do echo \"$cmd\" >> \/tmp\/console_commands.log; done) < \/dev\/stdin & proton run Wreckfest2.exe --server --save-dir={{SAVE_DIR}}",
+    "startup": "proton run Wreckfest2-headless.exe --server --save-dir={{SAVE_DIR}}",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": \"Server Started\"\r\n}",
